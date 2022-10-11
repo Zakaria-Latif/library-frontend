@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.library.LoginController" >
+   <left>
+      <AnchorPane mouseTransparent="true" prefHeight="720.0" prefWidth="580.0" style="-fx-background-color: #ddd;" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="200.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credits">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Text>
+            <Text layoutX="100.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zakaria latif" wrappingWidth="380.13671875">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="100.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mohamed Laasri" wrappingWidth="380.13671875">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="100.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilyasse Bamoussa" wrappingWidth="380.13671875">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="100.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nizar El Hilali" wrappingWidth="380.13671875">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="100.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ikram Jaa" wrappingWidth="380.13671875">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="100.0" layoutY="210.0" prefHeight="50.0" prefWidth="500.0" text="Email">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailField" layoutX="100.0" layoutY="266.0" prefHeight="50.0" prefWidth="500.0" promptText="Enter Email">
+               <font>
+                  <Font size="22.0" />
+               </font></TextField>
+            <Label layoutX="99.0" layoutY="350.0" prefHeight="50.0" prefWidth="500.0" text="Password">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Text layoutX="290.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Text>
+            <Button fx:id="loginButton" layoutX="100.0" layoutY="520.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #576EE0; -fx-text-fill: #fff;" text="Login">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Hyperlink fx:id="switchToSignup" layoutX="270.0" layoutY="157.0" onAction="#switchToSignupOnAction" text="Create an account">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Hyperlink>
+            <Text layoutX="100.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You are a new user ?">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="loginAlerts" fill="#da2c2c" layoutX="100.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <PasswordField fx:id="passwordField" layoutX="100.0" layoutY="405.0" prefHeight="50.0" prefWidth="500.0" promptText="Enter Password">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </PasswordField>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
