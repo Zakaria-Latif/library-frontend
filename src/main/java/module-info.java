@@ -9,4 +9,8 @@ module com.example.library {
 
     opens com.example.library to javafx.fxml;
     exports com.example.library;
+
+    requires com.google.gson;
+    requires java.net.http;
+    requires okhttp;
 }
