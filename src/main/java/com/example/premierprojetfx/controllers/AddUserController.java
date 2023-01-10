@@ -13,6 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -94,9 +98,10 @@ public class AddUserController {
 
 
             currentUser = new User(id.getText().toString(),name.getText().toString(),cin.getText().toString(),phoneNumber.getText().toString(),email.getText().toString()) ;
+            String gsonString = gson.toJson(currentUser);
+            addUser(gsonString);
 
-
-            System.out.println(gson.toJson(currentUser));
+            System.out.println(gsonString);
             Parent root ;
 
             try {
@@ -108,7 +113,47 @@ public class AddUserController {
             window.setScene(new Scene(root));
 
 
+        }
+        public void addUser(String jsonString){
+
+
+
+            String urlPost = "http://localhost:8090/user";
+
+            HttpClient client = HttpClient.newHttpClient();
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(urlPost))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(jsonString))
+                    .build();
+
+            try {
+                HttpResponse<String> response = client.send(request,
+                        HttpResponse.BodyHandlers.ofString());
+
+
+                System.out.println(response.body());
+
+                System.out.println("it workss");
+
+
+            } catch (IOException | InterruptedException e) {
+
+                e.printStackTrace();
             }
+
+
+
+
+
+
+        }
+
+
+
+
+
 
 
 

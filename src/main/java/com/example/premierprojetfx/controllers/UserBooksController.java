@@ -26,8 +26,9 @@ import java.net.http.HttpResponse;
 import java.util.ResourceBundle;
 
 public class UserBooksController implements Initializable {
-        private Gson gson = new Gson();
-        String url = "http://localhost:8080/Book/list ";
+        private   Gson gson = new Gson();
+        String url = "http://localhost:8090/user/book ";
+
 
         @FXML
         public TableColumn<Book, String> bookCol;
@@ -49,14 +50,7 @@ public class UserBooksController implements Initializable {
 
         }
 
-        ObservableList<Book> list= FXCollections.observableArrayList(
-                new Book("yes"),
-                new Book("noo"),
-
-                new Book("love")
-
-
-        );
+        ObservableList<Book> list= FXCollections.observableArrayList();
         /*public void loadData() {
                 try{
                         Connection conn = dc.Connect();
@@ -70,53 +64,36 @@ public class UserBooksController implements Initializable {
                 }
         */
 
-        HttpClient client = HttpClient.newHttpClient();
+        public void getAllBooks() {
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(url))
+                        .header("Content-Type", "application/json")
+                        .build();
+                HttpResponse<String> response;
+                try {
+                        response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                        Book[] books = gson.fromJson(response.body(), Book[].class);
+                        for (Book book : books) {
+                                list.add(book);
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(userBooks)))
-                .build();
-
-        HttpResponse<String> response;
-
-
-        {        try
-
-        {
-                response = client.send(request,
-                        HttpResponse.BodyHandlers.ofString());
-                Book[] books = gson.fromJson(response.body(), Book[].class);
-                for (Book book : books) {
-
-                        System.out.println(book.getBookName());
+                                System.out.println(book.getBookName());
+                        }
+                } catch (IOException e) {
+                        throw new RuntimeException(e);
+                } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
                 }
-        } catch(IOException e)
-
-        {
-                throw new RuntimeException(e);
-        } catch(InterruptedException e)
-
-        {
-                throw new RuntimeException(e);
         }
-
-}
-
-
-
 
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle){
-            bookCol.setCellValueFactory(new PropertyValueFactory<>("bookName"));
-
-            booksTable.setItems(list);
+                getAllBooks();
+                bookCol.setCellValueFactory(new PropertyValueFactory<>("bookName"));
+                booksTable.setItems(list);
 
 
         }
-
-
-
     }
 
 
