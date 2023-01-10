@@ -14,24 +14,24 @@
          <children>
             <AnchorPane prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #000000aa; back: 1; -fx-background-radius: 10;">
                <children>
-                  <Label fx:id="wrongSignup" layoutX="140.0" layoutY="50.0" prefHeight="23.0" prefWidth="110.0" textFill="#ee0404" AnchorPane.bottomAnchor="377.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="50.0" />
+                  <Label fx:id="wrongSignup" alignment="CENTER" layoutX="81.0" layoutY="50.0" prefHeight="23.0" prefWidth="227.0" textFill="#ee0404" AnchorPane.bottomAnchor="377.0" AnchorPane.leftAnchor="81.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="50.0" />
                   <Label layoutX="140.0" layoutY="14.0" text="Add New User" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="id" layoutX="10.0" layoutY="96.0" prefHeight="26.0" prefWidth="214.0" promptText="id" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                  <TextField fx:id="FirstName" layoutX="10.0" layoutY="96.0" prefHeight="26.0" prefWidth="214.0" promptText="FirstName" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                   <Button fx:id="submit" layoutX="134.0" layoutY="402.0" mnemonicParsing="false" onAction="#onClickButton" style="-fx-background-color: tranparent; -fx-border-color: #ffffff; -fx-text-fill: white;" text="submit" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
-                  <TextField fx:id="name" layoutX="10.0" layoutY="148.0" prefHeight="26.0" prefWidth="214.0" promptText="name" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                  <TextField fx:id="LastName" layoutX="10.0" layoutY="148.0" prefHeight="26.0" prefWidth="214.0" promptText="LastName" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                   <TextField fx:id="cin" layoutX="10.0" layoutY="200.0" prefHeight="26.0" prefWidth="214.0" promptText="cin" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                   <TextField fx:id="phoneNumber" layoutX="10.0" layoutY="258.0" prefHeight="26.0" prefWidth="214.0" promptText="phoneNumber" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                   <TextField fx:id="email" layoutX="10.0" layoutY="315.0" prefHeight="26.0" prefWidth="213.0" promptText="email" AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                  <Label layoutX="10.0" layoutY="73.0" text="id" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                  <Label layoutX="10.0" layoutY="73.0" text="FirstName" textFill="WHITE" AnchorPane.leftAnchor="10.0">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="129.0" text="full name" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                  <Label layoutX="10.0" layoutY="129.0" text="LastName" textFill="WHITE" AnchorPane.leftAnchor="10.0">
                      <font>
                         <Font size="12.0" />
                      </font>

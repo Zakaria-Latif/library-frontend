@@ -31,16 +31,23 @@ public class UserBooksController implements Initializable {
 
 
         @FXML
-        public TableColumn<Book, String> bookCol;
+        public TableColumn<Book, String> title;
+        @FXML
+        public TableColumn<Book, String> author;
+        @FXML
+        public TableColumn<Book, String> isbn;
+        @FXML
+        public TableColumn<Book, String> price;
+        @FXML
+        public TableColumn<Book, String> category;
+        @FXML
+        public TableColumn<Book, String> borrower;
 
         @FXML
         public TableView<Book> booksTable;
 
         @FXML
         public Button button;
-
-        @FXML
-        public TableColumn<Book, String> deletion;
 
         @FXML
         public Label userBooks;
@@ -50,19 +57,21 @@ public class UserBooksController implements Initializable {
 
         }
 
-        ObservableList<Book> list= FXCollections.observableArrayList();
-        /*public void loadData() {
-                try{
-                        Connection conn = dc.Connect();
-                        ObservableList<UserDetails> data = FXCollections.observableArrayList();
-                        ResultSet rs= conn.createStatement().executeQuery("SELECT * FROM member");
-                        while(rs.next())
-                                data.add(new UserDetails(rs.getInt("memberId"), rs.getString("fullName"), rs.getString("emailAddress"), rs.getString("DateOfBirth"), rs.getString("mailingAddress")));//RENAMED FROM "rs.getString(2),"
-                        Tb1.setItems(data);// PLACED THIS UNDERNEATH "data.add" IT WASN'T BEFORE
-                }catch(SQLException ex){
-                        System.err.println("Error" + ex);
-                }
-        */
+        ObservableList<Book> list= FXCollections.observableArrayList(
+                new Book("the art of war","Sun tzu","9780140439199","81.55","Non-fiction","ikramejaa"),
+                new Book("Invent and Wander","Jeff Bezzos","9781647820718","145.00","Autobiography","salmahader"),
+                new Book("The Art of Computer Programming","Donald Knuth","9780201853926","259.00","Non-fiction","mouadnoucer"),
+                new Book("Hunter X Hunter – Volume 36","Yoshihiro Togashi","9781974708413","85.00","Manga","souadjamali"),
+                new Book("SPQR: A History of Ancient Rome","Mary Beard","9780871404237","150.89","History","zouhairghazal"),
+                new Book("Harry Potter and the Philosopher's Stone","J. K. Rowling","9780439362139","75.98","FantasyFiction","karimaluna")
+
+
+
+
+
+        );
+
+
 
         public void getAllBooks() {
                 HttpClient client = HttpClient.newHttpClient();
@@ -77,7 +86,7 @@ public class UserBooksController implements Initializable {
                         for (Book book : books) {
                                 list.add(book);
 
-                                System.out.println(book.getBookName());
+                                System.out.println(book.getTitle());
                         }
                 } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -88,9 +97,29 @@ public class UserBooksController implements Initializable {
 
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle){
-                getAllBooks();
-                bookCol.setCellValueFactory(new PropertyValueFactory<>("bookName"));
+                //getAllBooks();
+
+
+
+
+
+                title.setCellValueFactory(new PropertyValueFactory<Book,String>("title"));
+
+                author.setCellValueFactory(new PropertyValueFactory<Book,String>("author"));
+
+                isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+
+                price.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+                category.setCellValueFactory(new PropertyValueFactory<>("category"));
+
+                borrower.setCellValueFactory(new PropertyValueFactory<>("borrower"));
                 booksTable.setItems(list);
+
+
+
+
+
 
 
         }

@@ -23,13 +23,13 @@ import java.util.regex.Pattern;
 public class AddUserController {
 
     private Gson gson = new Gson();
-    User currentUser ;
+    User currentUser;
 
 
     @FXML
-    private TextField id;
+    private TextField FirstName;
     @FXML
-    private TextField name;
+    private TextField LastName;
     @FXML
     private TextField cin;
     @FXML
@@ -40,13 +40,10 @@ public class AddUserController {
     private Label wrongSignup;
     @FXML
     private Button submit;
-    byte a =0;
+    byte a = 0;
 
 
-
-
-
-    void testInputs(){
+    /*void testInputs(){
 
         if(name.getText().length()==0){
             wrongSignup.setText("Insert your name please!");
@@ -77,12 +74,12 @@ public class AddUserController {
             wrongSignup.setText("");
         }
 
-    }
-    public static boolean valEmail(String input){
+    }*/
+    public static boolean valEmail(String input) {
 
         String emailReg = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 
-        Pattern emailPat = Pattern.compile(emailReg,Pattern.CASE_INSENSITIVE);
+        Pattern emailPat = Pattern.compile(emailReg, Pattern.CASE_INSENSITIVE);
 
         Matcher matcher = emailPat.matcher(input);
 
@@ -90,75 +87,88 @@ public class AddUserController {
     }
 
 
+    @FXML
+
+    public void onClickButton(ActionEvent event) {
 
 
-        @FXML
-
-        public void onClickButton(ActionEvent event){
+        currentUser = new User(FirstName.getText().toString(), LastName.getText().toString(), cin.getText().toString(), phoneNumber.getText().toString(), email.getText().toString());
 
 
-            currentUser = new User(id.getText().toString(),name.getText().toString(),cin.getText().toString(),phoneNumber.getText().toString(),email.getText().toString()) ;
-            String gsonString = gson.toJson(currentUser);
-            addUser(gsonString);
-
-            System.out.println(gsonString);
-            Parent root ;
-
-            try {
-                root = FXMLLoader.load(getClass().getResource("/userBooks.fxml"));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            Stage window = (Stage) submit.getScene().getWindow();
-            window.setScene(new Scene(root));
-
-
-        }
-        public void addUser(String jsonString){
-
-
-
-            String urlPost = "http://localhost:8090/user";
-
-            HttpClient client = HttpClient.newHttpClient();
-
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(urlPost))
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(jsonString))
-                    .build();
-
-            try {
-                HttpResponse<String> response = client.send(request,
-                        HttpResponse.BodyHandlers.ofString());
-
-
-                System.out.println(response.body());
-
-                System.out.println("it workss");
-
-
-            } catch (IOException | InterruptedException e) {
-
-                e.printStackTrace();
+        if (FirstName.getText().isBlank() || LastName.getText().isBlank() || cin.getText().isBlank() || phoneNumber.getText().isBlank() || email.getText().isBlank()) {
+            wrongSignup.setText("All the fields must be filled");
+        } else {
+            if (phoneNumber.getText().length() != 10) {
+                wrongSignup.setText("Phone number incorrect");
+            } else {
+                try {
+                    float phone = Float.parseFloat(phoneNumber.getText());
+                } catch (NumberFormatException e) {
+                    wrongSignup.setText("10 digits interger please");
+                }
             }
 
+            if (!(valEmail(email.getText()))) {
+                wrongSignup.setText("email not correct");
 
-
-
-
-
+            }
         }
 
 
+        String gsonString = gson.toJson(currentUser);
+        addUser(gsonString);
 
 
+        System.out.println(currentUser);
+        Parent root;
+
+        try {
+            root = FXMLLoader.load(getClass().getResource("/userBooks.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage window = (Stage) submit.getScene().getWindow();
+        window.setScene(new Scene(root));
 
 
+    }
 
+    public void addUser(String jsonString) {
+
+
+        String urlPost = "http://localhost:8090/user";
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(urlPost))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonString))
+                .build();
+
+        try {
+            HttpResponse<String> response = client.send(request,
+                    HttpResponse.BodyHandlers.ofString());
+
+
+            System.out.println(response.body());
+
+            System.out.println("it workss");
+
+
+        } catch (IOException | InterruptedException e) {
+
+            e.printStackTrace();
+        }
+
+
+    }
 
 
 }
+
+
+
 
 
 

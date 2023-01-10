@@ -1,14 +1,14 @@
 package com.example.premierprojetfx.models;
 
 public class User {
-    public String id;
-    public String name;
+    public String FirstName;
+    public String LastName;
     public String cin;
     public String phoneNumber;
     public String email;
-    public User(String id,String name,String cin,String phoneNumber,String email){
-        this.id=id;
-        this.name=name;
+    public User(String FirstName,String LastName,String cin,String phoneNumber,String email){
+        this.FirstName=FirstName;
+        this.LastName=LastName;
         this.cin=cin;
         this.phoneNumber=phoneNumber;
         this.email=email;
@@ -20,8 +20,8 @@ public class User {
     @Override
     public String toString() {
         return "current User format json:{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
+                "First Name='" + FirstName + '\'' +
+                ",Last name='" + LastName + '\'' +
                 ", cin='" + cin + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
